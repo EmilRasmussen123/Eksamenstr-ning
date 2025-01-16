@@ -1,63 +1,58 @@
-import java.util.ArrayList;
-import java.util.List;
+public class Beer {
+    private String name;
+    private double alcoholPercentage;
+    private double price;
 
-class HogwartsStudent {
-    private String firstName;
-    private String lastName;
-    private String house;
-
-    public HogwartsStudent(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    // Constructor
+    public Beer(String name, double alcoholPercentage, double price) {
+        this.name = name;
+        setAlcoholPercentage(alcoholPercentage); // Use setter to validate
+        setPrice(price); // Use setter to validate
     }
 
-    public String getHouse() {
-        return house;
+    // Getters
+    public String getName() {
+        return name;
     }
 
-    public void setHouse(String house) {
-        if (house.equals("Gryffindor") || house.equals("Hufflepuff") || house.equals("Ravenclaw") || house.equals("Slytherin")) {
-            this.house = house;
-        } else {
-            throw new IllegalArgumentException("Invalid house name: " + house);
+    public double getAlcoholPercentage() {
+        return alcoholPercentage;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    // Setters
+    public void setAlcoholPercentage(double alcoholPercentage) {
+        if (alcoholPercentage < 0 || alcoholPercentage > 100) {
+            throw new IllegalArgumentException("Alcohol percentage must be between 0 and 100.");
         }
+        this.alcoholPercentage = alcoholPercentage;
     }
 
-    public String toString() {
-        return firstName + " " + lastName + " (House: " + house + ")";
-    }
-
-    public String getLastName() {
-        return lastName;
+    public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative.");
+        }
+        this.price = price;
     }
 
     public static void main(String[] args) {
-        List<Hogwartsstudent> students = new ArrayList<>();
+        // Create a list of beers
+        Beer[] beers = {
+                new Beer("Beer1", 5.0, 25.0),
+                new Beer("Beer2", 4.5, 20.0),
+                new Beer("Beer3", 6.0, 30.0)
+        };
 
-        Hogwartsstudent student1 = new Hogwartsstudent("Harry", "Potter");
-        student1.setHouse("Gryffindor");
-        students.add(student1);
-
-        Hogwartsstudent student2 = new Hogwartsstudent("Hermione", "Granger");
-        student2.setHouse("Gryffindor");
-        students.add(student2);
-
-        Hogwartsstudent student3 = new Hogwartsstudent("Draco", "Malfoy");
-        student3.setHouse("Slytherin");
-        students.add(student3);
-
-        Hogwartsstudent student4 = new Hogwartsstudent("Ron", "weasley");
-        student4.setHouse("Ravenclaw");
-        students.add(student4);
-
-        Hogwartsstudent student5 = new Hogwartsstudent("Maja","Larsen");
-        student5.setHouse("Slytherin");
-        students.add(student5);
-
-        students.sort((s1, s2) -> s1.getLastName().compareTo(s2.getLastName()));
-
-        for (Hogwartsstudent student : students) {
-            System.out.println(student);
+        // Calculate average price
+        double totalPrice = 0;
+        for (Beer beer : beers) {
+            totalPrice += beer.getPrice();
         }
+        double averagePrice = totalPrice / beers.length;
+
+        System.out.println("The average price of the beers is: " + averagePrice + " Kr.");
     }
 }
