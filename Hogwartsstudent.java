@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class HogwartsStudent {
+class Hogwartsstudent {
     private String firstName;
     private String lastName;
     private String house;
 
-    public HogwartsStudent(String firstName, String lastName) {
+    public Hogwartsstudent(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
