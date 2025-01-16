@@ -35,7 +35,6 @@ public class UsersWithEnum {
         }
 
         // To string for easy printing
-        @Override
         public String toString() {
             return "User{username='" + username + "', userid=" + userid + ", role=" + role + '}';
         }
